@@ -1,0 +1,36 @@
+{
+  "boards": [
+    {
+      "name": "qwe",
+      "user": 0,
+      "id": 67465361151,
+      "starred": false,
+      "created": "2021-12-29"
+    }
+  ],
+  "tasks": [],
+  "users": [],
+  "lists": [
+    {
+      "boardId": 67465361151,
+      "title": "qwe",
+      "id": 35398516241,
+      "created": "2021-12-29",
+      "order": 0
+    },
+    {
+      "boardId": 67465361151,
+      "title": "qwe",
+      "id": 88905016655,
+      "created": "2021-12-29",
+      "order": 1
+    },
+    {
+      "boardId": 67465361151,
+      "title": "qwe",
+      "id": 1899418266,
+      "created": "2021-12-29",
+      "order": 2
+    }
+  ]
+}
