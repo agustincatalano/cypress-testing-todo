@@ -13,7 +13,7 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: 'module'
   },
-  plugins: ['vue', 'cypress', 'chai-friendly'],
+  plugins: ['cypress', 'chai-friendly'],
   rules: {
     'comma-spacing': ['error', { before: false, after: true }],
     'space-infix-ops': 'error',
