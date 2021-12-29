@@ -9,6 +9,7 @@
     "browserify": "^17.0.0",
     "connect-busboy": "0.0.2",
     "connect-history-api-fallback": "^1.6.0",
+    "cypress": "^9.2.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
@@ -39,7 +40,7 @@
   "license": "ISC",
   "name": "trelloapp",
   "scripts": {
-    "cy:open": "npx cypres open",
+    "cypress-open": "cypress open",
     "start": "grunt dev && node index.js"
   },
   "version": "1.0.0"

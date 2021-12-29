@@ -187,7 +187,7 @@ module.exports = (req, res, next) => {
       from: 'trelloapp@filiphric.sk',
       to: req.body.email,
       subject: 'Welcome to Trello app',
-      html: 'Your account was successfully created!\nIn the meantime, subscribe to my <a href="https://www.youtube.com/channel/UCDOCAVIhSh5VpJMEfdak1OA">YouTube channel for Cypress tips!</a>',
+      html: 'Your account was successfully created!',
     }, function(err, reply) {
       console.log(err && err.stack);
       console.dir(reply);
