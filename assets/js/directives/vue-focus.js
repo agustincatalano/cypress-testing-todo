@@ -1,12 +1,12 @@
-const Vue = require('vue');
+const Vue = require('vue')
 
 Vue.directive('focus', {
   inserted: function (el) {
-    el.focus();
+    el.focus()
   },
   update: function (el) {
     Vue.nextTick(function() {
-      el.focus();
-    });
+      el.focus()
+    })
   }
-});
+})

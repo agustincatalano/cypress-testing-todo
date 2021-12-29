@@ -25,12 +25,12 @@ module.exports = function(grunt) {
         tasks: ['browserify'],
       }
     }
-  });
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('s', ['sass']);
-  grunt.registerTask('b', ['browserify']);
-  grunt.registerTask('dev', ['sass', 'browserify']);
+  })
+  grunt.loadNpmTasks('grunt-contrib-sass')
+  grunt.loadNpmTasks('grunt-browserify')
+  grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.registerTask('s', ['sass'])
+  grunt.registerTask('b', ['browserify'])
+  grunt.registerTask('dev', ['sass', 'browserify'])
 
-};
+}

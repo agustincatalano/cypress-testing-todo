@@ -12,6 +12,7 @@
     "cypress": "^9.2.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-vue": "^6.2.2",
     "fs-extra": "^9.0.1",
@@ -41,7 +42,12 @@
   "name": "trelloapp",
   "scripts": {
     "cypress-open": "cypress open",
-    "start": "grunt dev && node index.js"
+    "start": "grunt dev && node index.js",
+    "lint-cypress": "eslint cypress",
+    "lint-fix-cypress": "eslint cypress --fix"
   },
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": {
+    "eslint-plugin-chai-friendly": "^0.7.2"
+  }
 }
