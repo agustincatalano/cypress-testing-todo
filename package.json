@@ -41,10 +41,10 @@
   "license": "ISC",
   "name": "trelloapp",
   "scripts": {
-    "cypress-open": "cypress open",
+    "cypress-open": "yarn start & cypress open",
     "start": "grunt dev && node index.js",
-    "lint-cypress": "eslint cypress",
-    "lint-fix-cypress": "eslint cypress --fix"
+    "eslint-cypress": "eslint cypress",
+    "eslint-fix-cypress": "eslint cypress --fix"
   },
   "version": "1.0.0",
   "dependencies": {
