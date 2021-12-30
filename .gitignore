@@ -6,5 +6,6 @@ cypress/screenshots/*
 /public/uploaded/*.png
 /public/uploaded/*.jpg
 public/css
+public/data/data.json
 public/js
 .DS_Store
