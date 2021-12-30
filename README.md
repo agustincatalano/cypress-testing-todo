@@ -7,6 +7,8 @@ The Trello app is build by https://github.com/filiphric and I will focus only on
 
 eslint will run only on the tests/cypress folder, ignoring the app code. 
 
+#Chai Assertions
+
 ## Instalation
 
 `git clone https://github.com/agustincatalano/cypress-testing-todo.git`
