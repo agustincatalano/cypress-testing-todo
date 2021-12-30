@@ -44,7 +44,9 @@
     "cypress-open": "yarn start & cypress open",
     "start": "grunt dev && node index.js",
     "eslint-cypress": "eslint cypress",
-    "eslint-fix-cypress": "eslint cypress --fix"
+    "eslint-fix-cypress": "eslint cypress --fix",
+    "cy-run-headless-chrome": "cypress run --browser chrome",
+    "cy-run-headless-firefox": "cypress run --browser firefox"
   },
   "version": "1.0.0",
   "dependencies": {
