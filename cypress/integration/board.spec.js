@@ -1,4 +1,3 @@
-
 const appContainerSelector = '#trello-app'
 const headerBarSelector = '.Nav'
 const trelloLogoSelector = '.Nav_logo'
@@ -10,8 +9,13 @@ const boardInput = '[data-cy="new-board-input"]'
 const activeBoardSelector = '.board_newItem-active'
 const saveButton = '[data-cy="new-board-create"]'
 const boardContainer = '.boardDetail'
+const addListSelector = '[data-cy="add-list"]'
+const listInputSelector = '[data-cy="add-list-input"]'
+const saveButtonSelector = '[data-cy="save"]'
 
-beforeEach(() => {
+const numberOfLists = 3
+
+before(() => {
   cy.visit('/')
   cy.request({
     method: 'POST',
@@ -62,5 +66,13 @@ describe('Create/update Board', () => {
     cy.get(saveButton).click()
     cy.url().should('include', 'board')
     cy.get(boardContainer)
+  })
+
+  it(`Add ${numberOfLists} lists`, () => {
+    for (let i = 0; i < numberOfLists; i++) {
+      cy.get(addListSelector).click({ force: true })
+      cy.get(listInputSelector).type(`List ${i}`)
+      cy.get(saveButtonSelector).click()
+    }
   })
 })
