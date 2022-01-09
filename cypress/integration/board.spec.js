@@ -1,6 +1,8 @@
 import * as $ from '../common/selectors'
 import { methods } from '../common/methods'
 
+const dataTransfer = new DataTransfer()
+
 const boardName = 'AWESOME BOARD'
 const numberOfLists = 3
 
@@ -76,5 +78,36 @@ describe('Create/update Board and lists', () => {
       .eq(1)
       .should('be.visible')
       .contains('My Boards')
+  })
+})
+
+describe('Drag & drop with Trello lists', () => {
+  it(`Create a New Board with name ${boardName}`, () => {
+    methods.createNewBoard(boardName)
+  })
+
+  it(`Add ${numberOfLists} lists`, () => {
+    methods.addLists(numberOfLists)
+  })
+
+  it('Drag and drop with @4tw/cypress-drag-drop plugin', () => {
+    //validate dataid first element - original order
+    cy.get('[data-cy="list"]:first').invoke('attr', 'data-id').as('dataIdFirst')
+    cy.get('@dataIdFirst').then((dataId1) =>
+      cy.get('[data-cy="list"]:first').should('have.attr', 'data-id', dataId1)
+    )
+    //validate dataid last element - original order
+    cy.get('[data-cy="list"]:last').invoke('attr', 'data-id').as('dataIdLast')
+    cy.get('@dataIdLast').then((dataId3) =>
+      cy.get('[data-cy="list"]:last').should('have.attr', 'data-id', dataId3)
+    )
+    //drag and drop - order changed
+    cy.get('[data-cy="list-name"]:first').drag('[data-cy="list-name"]:last')
+    //validate the second element, has the last dataID
+    cy.get('@dataIdLast').then((dataId3) =>
+      cy
+        .get('[data-cy="list"]:nth-child(2)')
+        .should('have.attr', 'data-id', dataId3)
+    )
   })
 })
