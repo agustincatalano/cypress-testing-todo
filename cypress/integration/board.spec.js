@@ -14,6 +14,9 @@ const listInputSelector = '[data-cy="add-list-input"]'
 const saveButtonSelector = '[data-cy="save"]'
 const deleteButtonSelector = '[data-cy="delete"]'
 const dropdownButtonSelector = '[data-cy="list"] > .dropdown'
+const boardOptionsSelector = '[data-cy="board-options"]'
+const deleteBoardSelector = '.dropdown-content > .delete'
+const boardTitleSelector = '.background_title'
 
 const numberOfLists = 3
 
@@ -88,10 +91,9 @@ describe('Create/update Board and lists', () => {
   })
 
   it('Delete current board', () => {
-    cy.get('[data-cy="board-options"]').click()
-    cy.get('.dropdown-content > .delete').eq(1).click()
-    cy.get('.background_container .background_title')
-      .eq(1)
-      .contains('My Boards')
+    cy.get(boardOptionsSelector).click()
+    cy.get(deleteBoardSelector).eq(1).click()
+    cy.get(bodyContainerSelecor).should('be.visible')
+    cy.get(boardTitleSelector).eq(1).should('be.visible').contains('My Boards')
   })
 })
