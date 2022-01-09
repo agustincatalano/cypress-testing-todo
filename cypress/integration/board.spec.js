@@ -1,5 +1,3 @@
-const { elementAt } = require('rxjs')
-
 const appContainerSelector = '#trello-app'
 const headerBarSelector = '.Nav'
 const trelloLogoSelector = '.Nav_logo'
@@ -69,7 +67,7 @@ describe('Create/update Board and lists', () => {
     cy.get(boardInput).type(boardName)
     cy.get(saveButton).click()
     cy.url().should('include', 'board')
-    cy.get(boardContainer)
+    cy.get(boardContainer).should('be.visible')
   })
 
   it(`Add ${numberOfLists} lists`, () => {
@@ -87,5 +85,13 @@ describe('Create/update Board and lists', () => {
       list.first().click()
       cy.get(deleteButtonSelector).click({ multiple: true })
     })
+  })
+
+  it('Delete current board', () => {
+    cy.get('[data-cy="board-options"]').click()
+    cy.get('.dropdown-content > .delete').eq(1).click()
+    cy.get('.background_container .background_title')
+      .eq(1)
+      .contains('My Boards')
   })
 })
