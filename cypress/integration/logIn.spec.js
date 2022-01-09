@@ -23,4 +23,9 @@ describe('log in tests', () => {
       .contains('User is logged in')
     cy.get($.loggedUserSelector).should('be.visible').contains(email)
   })
+  it('log out', () => {
+    cy.get($.loggedUserSelector).click()
+    cy.get($.logOutButtonSelector).click()
+    cy.get($.logInSelector).should('be.visible').contains('Log in')
+  })
 })
