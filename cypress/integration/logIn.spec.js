@@ -1,14 +1,14 @@
 import * as $ from '../common/selectors'
-
+let trelloLogInCookie = ''
 const email = 'cool@email.com'
 const password = 'this1sAPassword'
 
 before(() => {
-  cy.visit('/')
   cy.request({
     method: 'POST',
     url: '/api/reset'
   })
+  cy.visit('/')
 })
 
 describe('log in tests', () => {
@@ -22,10 +22,24 @@ describe('log in tests', () => {
       .should('be.visible')
       .contains('User is logged in')
     cy.get($.loggedUserSelector).should('be.visible').contains(email)
+
+    //Store log-in cookie value
+    cy.getCookie('trello_token').then((cookie) => {
+      trelloLogInCookie = cookie.value
+    })
   })
   it('log out', () => {
     cy.get($.loggedUserSelector).click()
     cy.get($.logOutButtonSelector).click()
     cy.get($.logInSelector).should('be.visible').contains('Log in')
+  })
+
+  it('log in by cookie', () => {
+    cy.setCookie('trello_token', trelloLogInCookie)
+    cy.reload()
+    cy.get($.logInMessageSelector)
+      .should('be.visible')
+      .contains('User is logged in')
+    cy.get($.loggedUserSelector).should('be.visible').contains(email)
   })
 })
