@@ -21,6 +21,6 @@ describe('log in tests', () => {
     cy.get($.logInMessageSelector)
       .should('be.visible')
       .contains('User is logged in')
-    cy.get('[data-cy="logged-user"]').should('be.visible').contains(email)
+    cy.get($.loggedUserSelector).should('be.visible').contains(email)
   })
 })
