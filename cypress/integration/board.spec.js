@@ -1,3 +1,5 @@
+const { elementAt } = require('rxjs')
+
 const appContainerSelector = '#trello-app'
 const headerBarSelector = '.Nav'
 const trelloLogoSelector = '.Nav_logo'
@@ -12,6 +14,8 @@ const boardContainer = '.boardDetail'
 const addListSelector = '[data-cy="add-list"]'
 const listInputSelector = '[data-cy="add-list-input"]'
 const saveButtonSelector = '[data-cy="save"]'
+const deleteButtonSelector = '[data-cy="delete"]'
+const dropdownButtonSelector = '[data-cy="list"] > .dropdown'
 
 const numberOfLists = 3
 
@@ -56,7 +60,7 @@ describe('Home page validations', () => {
   })
 })
 
-describe('Create/update Board', () => {
+describe('Create/update Board and lists', () => {
   it(`Create a New Board with name ${boardName}`, () => {
     //Create new board
     cy.get(activeBoardSelector).should('not.exist')
@@ -70,9 +74,18 @@ describe('Create/update Board', () => {
 
   it(`Add ${numberOfLists} lists`, () => {
     for (let i = 0; i < numberOfLists; i++) {
-      cy.get(addListSelector).click({ force: true })
+      cy.get(addListSelector).click()
       cy.get(listInputSelector).type(`List ${i}`)
       cy.get(saveButtonSelector).click()
     }
+    //validate lists are created
+    cy.get('[data-cy="list"]').should('have.length', numberOfLists)
+  })
+
+  it('Delete all list in the current board', () => {
+    cy.get(dropdownButtonSelector).then((list) => {
+      list.first().click()
+      cy.get(deleteButtonSelector).click({ multiple: true })
+    })
   })
 })
