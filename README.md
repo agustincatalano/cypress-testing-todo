@@ -25,7 +25,7 @@ eslint will run only on the tests/cypress folder, ignoring the app code.
 `cy-run-headless-firefox` to run tests on firefox in headless mode and generate reports
 
 
-# Reports will be generated after run tests in headless mode (chrome or firefox) under the report folder that will be generated automatically when the test ends
+ ###### Reports will be generated after run tests in headless mode (chrome or firefox) under the report folder that will be generated automatically when the test ends
 
 
 
