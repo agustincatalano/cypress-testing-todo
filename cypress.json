@@ -2,5 +2,12 @@
   "baseUrl": "http://localhost:3000",
   "retries": {
     "runMode": 2
+  },
+  "reporter": "cypress-mochawesome-reporter",
+  "reporterOptions": {
+    "reportDir": "cypress/report",
+    "charts": true,
+    "reportPageTitle": "Trello cypress report",
+    "embeddedScreenshots": true
   }
 }

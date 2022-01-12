@@ -1,8 +1,6 @@
 import * as $ from '../common/selectors'
 import { methods } from '../common/methods'
 
-const dataTransfer = new DataTransfer()
-
 const boardName = 'AWESOME BOARD'
 const numberOfLists = 3
 

@@ -11,6 +11,7 @@
     "connect-busboy": "0.0.2",
     "connect-history-api-fallback": "^1.6.0",
     "cypress": "^9.2.0",
+    "cypress-mochawesome-reporter": "^2.3.0",
     "eslint": "^8.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-cypress": "^2.12.1",
@@ -46,8 +47,8 @@
     "start": "grunt dev && node index.js",
     "eslint-cypress": "eslint cypress",
     "eslint-fix-cypress": "eslint cypress --fix",
-    "cy-run-headless-chrome": "cypress run --browser chrome",
-    "cy-run-headless-firefox": "cypress run --browser firefox"
+    "cy-run-headless-chrome": "yarn start & cypress run --browser chrome",
+    "cy-run-headless-firefox": "yarn start & cypress run --browser firefox"
   },
   "version": "1.0.0",
   "dependencies": {
