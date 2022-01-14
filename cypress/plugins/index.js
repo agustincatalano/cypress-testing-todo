@@ -15,9 +15,34 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-unused-vars
+
+const { addMatchImageSnapshotPlugin } = require('cypress-image-snapshot/plugin')
+
+//this is working but one at the time, can't be executed both together
+////eslint-disable-next-line no-unused-vars
+// module.exports = (on, config) => {
+//   require('cypress-mochawesome-reporter/plugin')(on)
+//   addMatchImageSnapshotPlugin(on, config)
+// }
+
+// module.exports = (on, config) => {
+//   addMatchImageSnapshotPlugin(on, config)
+// }
+
+const {
+  beforeRunHook,
+  afterRunHook
+} = require('cypress-mochawesome-reporter/lib')
+
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-  require('cypress-mochawesome-reporter/plugin')(on)
+  on('before:run', async (details) => {
+    console.log('override before:run')
+    addMatchImageSnapshotPlugin(on, config) //<-- failing to execute. looks like both plugins can't run together on cypress
+    await beforeRunHook(details)
+  })
+
+  on('after:run', async () => {
+    console.log('override after:run')
+    await afterRunHook()
+  })
 }

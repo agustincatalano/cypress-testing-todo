@@ -41,5 +41,10 @@ describe('log in tests', () => {
       .should('be.visible')
       .contains('User is logged in')
     cy.get($.loggedUserSelector).should('be.visible').contains(email)
+    cy.get($.loggedUserSelector).matchImageSnapshot('loggedIn button', {
+      failureThreshold: 0.21,
+      failureThresholdType: 'percent'
+    })
+
   })
 })

@@ -11,6 +11,7 @@
     "connect-busboy": "0.0.2",
     "connect-history-api-fallback": "^1.6.0",
     "cypress": "^9.2.0",
+    "cypress-image-snapshot": "^4.0.1",
     "cypress-mochawesome-reporter": "^2.3.0",
     "eslint": "^8.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
