@@ -7,6 +7,12 @@ cypress/report
 /public/uploaded/*.png
 /public/uploaded/*.jpg
 public/css
-public/data/data.json
 public/js
 .DS_Store
+public/data/data.json
+
+
+
+# backstopJS
+backstop.json
+backstop_data

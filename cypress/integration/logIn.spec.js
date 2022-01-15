@@ -32,6 +32,7 @@ describe('log in tests', () => {
     cy.get($.loggedUserSelector).click()
     cy.get($.logOutButtonSelector).click()
     cy.get($.logInSelector).should('be.visible').contains('Log in')
+    cy.screenshot('logout-My-board')
   })
 
   it('log in by cookie', () => {
@@ -41,5 +42,7 @@ describe('log in tests', () => {
       .should('be.visible')
       .contains('User is logged in')
     cy.get($.loggedUserSelector).should('be.visible').contains(email)
+    cy.get($.loggedUserSelector).screenshot('loggedInButton')
+    cy.screenshot('login-My-board')
   })
 })

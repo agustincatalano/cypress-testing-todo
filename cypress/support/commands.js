@@ -24,3 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 require('@4tw/cypress-drag-drop')
+
+Cypress.Commands.add('takeScreenshot', (screenshotName, element) => {
+  cy.get(element, { timeout: 10000 }).screenshot(`${screenshotName}`)
+})
