@@ -1,0 +1,42 @@
+{
+  "id": "trelloApp",
+  "viewports": [{ "label": "Desktop", "width": 1000, "height": 660 }],
+  "scenarios": [
+    {
+      "label": "delete-board-button",
+      "url": "/cypress/screenshots/board.spec.js/delete-board-button.png",
+      "requireSameDimensions": true
+    },
+    {
+      "label": "list 2",
+      "url": "/cypress/screenshots/board.spec.js/list 2.png",
+      "requireSameDimensions": true
+    },
+    {
+      "label": "loggedInButton",
+      "url": "/cypress/screenshots/logIn.spec.js/loggedInButton.png",
+      "requireSameDimensions": true
+    },
+    {
+      "label": "login-My-board",
+      "url": "/cypress/screenshots/logIn.spec.js/login-My-board.png",
+      "requireSameDimensions": true
+    },
+    {
+      "label": "logout-My-board",
+      "url": "/cypress/screenshots/logIn.spec.js/logout-My-board.png",
+      "requireSameDimensions": true
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "cypress/screenshotsReference",
+    "bitmaps_test": "backstop_data/visualRegression"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": { "args": ["--no-sandbox"] },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

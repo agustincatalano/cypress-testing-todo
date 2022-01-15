@@ -70,6 +70,7 @@ describe('Create/update Board and lists', () => {
 
   it('Delete current board', () => {
     cy.get($.boardOptionsSelector).click()
+    cy.get($.deleteBoardSelector).eq(1).screenshot('delete-board-button')
     cy.get($.deleteBoardSelector).eq(1).click()
     cy.get($.bodyContainerSelector).should('be.visible')
     cy.get($.boardTitleSelector)
@@ -104,7 +105,7 @@ describe('Drag & drop with Trello lists', () => {
     //validate the second element, has the last dataID
     cy.get('@dataIdLast').then((dataId3) =>
       cy
-        .get('[data-cy="list"]:nth-child(2)')
+        .get('[data-cy="list"]:nth-child(2)').screenshot('list 2')
         .should('have.attr', 'data-id', dataId3)
     )
   })
