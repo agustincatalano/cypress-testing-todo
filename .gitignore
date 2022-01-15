@@ -10,3 +10,9 @@ public/css
 public/data/data.json
 public/js
 .DS_Store
+
+
+
+# backstopJS
+backstop.json
+backstop_data

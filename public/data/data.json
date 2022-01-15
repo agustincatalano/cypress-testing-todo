@@ -1,6 +1,12 @@
 {
   "boards": [],
   "tasks": [],
-  "users": [],
+  "users": [
+    {
+      "email": "cool@email.com",
+      "password": "$2a$10$x5gPRTDKLFviyZeuxLLs0enSVeOWeJ2cqc5nHN8s.bhxXx8b4uZKa",
+      "id": 1
+    }
+  ],
   "lists": []
 }
