@@ -51,7 +51,7 @@
     "cy-run-headless-chrome": "test-vr-cleanup & yarn start & cypress run --browser chrome",
     "cy-run-headless-firefox": "test-vr-cleanup & yarn start & cypress run --browser firefox",
     "test-vr": "backstop test",
-    "vr-cleanup": "rm -rf cypress/visualRegression cypress/screenshots/*",
+    "vr-cleanup": "rm -rf cypress/screenshots/*",
     "vr-approve": "backstop approve"
   },
   "version": "1.0.0",
