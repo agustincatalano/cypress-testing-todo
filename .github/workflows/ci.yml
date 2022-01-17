@@ -15,6 +15,19 @@ jobs:
         with:
           command: yarn cy-run-headless-chrome
 
+
+name: Lint Code Base
+
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Run eslint
-      - uses: actions/checkout@v2
+      - uses: github/super-linter@v3
           command: yarn eslint-cypress
+
