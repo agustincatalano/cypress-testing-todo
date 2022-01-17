@@ -5,7 +5,7 @@
   },
   "reporter": "cypress-mochawesome-reporter",
   "reporterOptions": {
-    "reportDir": "cypress/report",
+    "reportDir": "test-report",
     "charts": true,
     "reportPageTitle": "Trello cypress report",
     "embeddedScreenshots": true
