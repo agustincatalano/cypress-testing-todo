@@ -14,3 +14,6 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: yarn cy-run-headless-chrome
+
+      - name: Run eslint
+          command: yarn eslint-cypress
