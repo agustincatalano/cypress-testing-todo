@@ -13,5 +13,18 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          command: yarn eslint cypress
           command: yarn cy-run-headless-chrome
+
+
+name: Lint
+
+on: [push]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: cypress/
