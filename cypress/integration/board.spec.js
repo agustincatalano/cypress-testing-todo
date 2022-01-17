@@ -3,6 +3,7 @@ import { methods } from '../common/methods'
 
 const boardName = 'AWESOME BOARD'
 const numberOfLists = 3
+const errorEslint = "This is a test"
 
 before(() => {
   cy.visit('/')
