@@ -3,7 +3,7 @@
 coverage
 cypress/videos/*
 cypress/screenshots/*
-cypress/report
+test-report
 /public/uploaded/*.png
 /public/uploaded/*.jpg
 public/css
