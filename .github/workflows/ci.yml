@@ -16,4 +16,5 @@ jobs:
           command: yarn cy-run-headless-chrome
 
       - name: Run eslint
+      - uses: actions/checkout@v2
           command: yarn eslint-cypress
