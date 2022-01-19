@@ -4,6 +4,9 @@ module.exports = {
     commonjs: true,
     es2020: true
   },
+  globals: {
+    cy: true
+  },
   ignorePatterns: ['cypress/screenshotsReference/*.png', 'test-report'],
   extends: [
     'eslint:recommended',
