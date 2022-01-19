@@ -1,7 +1,7 @@
 import * as $ from '../common/selectors'
 
 export const methods = {
-  createNewBoard(boardName) {
+  createNewBoard(boardName = 'Unnamed Board') {
     //Create new board
     cy.get($.activeBoardSelector).should('not.exist')
     cy.get($.newBoardSelector).click()
@@ -12,13 +12,11 @@ export const methods = {
     cy.get($.boardContainer).should('be.visible')
   },
 
-  addLists(numberOfLists) {
+  addLists(numberOfLists = 1) {
     for (let i = 0; i < numberOfLists; i++) {
       cy.get($.addListSelector).click()
       cy.get($.listInputSelector).type(`List ${i}`)
       cy.get($.saveButtonSelector).click()
     }
-    //validate lists are created
-    cy.get('[data-cy="list"]').should('have.length', numberOfLists)
   }
 }
