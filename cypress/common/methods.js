@@ -2,7 +2,6 @@ import * as $ from '../common/selectors'
 
 export const methods = {
   createNewBoard(boardName = 'Unnamed Board') {
-    //Create new board
     cy.get($.activeBoardSelector).should('not.exist')
     cy.get($.newBoardSelector).click()
     cy.get($.activeBoardSelector).should('be.visible')

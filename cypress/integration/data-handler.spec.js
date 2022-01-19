@@ -1,4 +1,3 @@
-import * as $ from '../common/selectors'
 import { methods } from '../common/methods'
 import * as data from '../fixtures/data.json'
 
