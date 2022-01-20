@@ -2,10 +2,8 @@ module.exports = {
   env: {
     browser: true,
     commonjs: true,
-    es2020: true
-  },
-  globals: {
-    cy: true
+    es2020: true,
+    'cypress/globals': true
   },
   ignorePatterns: ['cypress/screenshotsReference/*.png', 'test-report'],
   extends: [
