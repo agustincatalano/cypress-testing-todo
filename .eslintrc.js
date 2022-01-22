@@ -1,9 +1,14 @@
+const { createJSDocTypeExpression } = require('typescript')
+
 module.exports = {
   env: {
     browser: true,
     commonjs: true,
     es2020: true,
     'cypress/globals': true
+  },
+  compilerOptions: {
+    types: 'cypress'
   },
   ignorePatterns: ['cypress/screenshotsReference/*.png', 'test-report'],
   extends: [
