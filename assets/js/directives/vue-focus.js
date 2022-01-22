@@ -5,7 +5,7 @@ Vue.directive('focus', {
     el.focus()
   },
   update: function (el) {
-    Vue.nextTick(function() {
+    Vue.nextTick(function () {
       el.focus()
     })
   }

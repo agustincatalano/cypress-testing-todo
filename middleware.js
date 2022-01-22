@@ -6,27 +6,26 @@ const path = require('path') // used for file path
 const fs = require('fs-extra')
 const socket = require('socket.io-client')('http://localhost:3000')
 
-function randomId() {
+function randomId () {
   return Math.floor(100000 * Math.random() * 900000)
 }
 
 module.exports = (req, res, next) => {
-
   const unauthorized = function () {
     return res.status(403).jsonp({
-      error: 'User not authorized to access resource',
+      error: 'User not authorized to access resource'
     })
   }
 
   const userNotFound = function () {
     return res.status(404).jsonp({
-      error: 'User not found',
+      error: 'User not found'
     })
   }
 
   const badRequest = function (param) {
     return res.status(400).jsonp({
-      error: `Bad request. ${param} is required.`,
+      error: `Bad request. ${param} is required.`
     })
   }
 
@@ -56,11 +55,10 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'GET' && req.path === '/boards') {
-
     const publicBoards = db.get('boards').filter({ user: 0 }).value()
     const boards = db.get('boards').filter({ user: userId }).value()
 
-    const result = [ ...publicBoards, ...boards ]
+    const result = [...publicBoards, ...boards]
 
     const response = res.status(200).jsonp(result)
 
@@ -87,14 +85,12 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'PATCH' && req.path.match(/\/boards\/\d*/g)) {
-
     const id = parseInt(req.path.replace('/boards/', ''))
 
     socket.emit('boardUpdate', id, req.body)
   }
 
   if (req.method === 'POST' && req.path === '/lists') {
-
     // validation
     if (req.body.boardId === undefined) return badRequest('boardId')
 
@@ -107,19 +103,16 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'PATCH' && req.path.match(/\/lists\/\d*/g)) {
-
     const id = parseInt(req.path.replace('/lists/', ''))
     socket.emit('listUpdated', id, req.body)
   }
 
   if (req.method === 'DELETE' && req.path.match(/\/lists\/\d*/g)) {
-
     const id = parseInt(req.path.replace('/lists/', ''))
     socket.emit('listDeleted', id)
   }
 
   if (req.method === 'POST' && req.path === '/tasks') {
-
     // validation
     if (req.body.boardId === undefined) return badRequest('boardId')
     if (req.body.listId === undefined) return badRequest('listId')
@@ -131,25 +124,20 @@ module.exports = (req, res, next) => {
 
     // stream message
     socket.emit('taskCreated', req.body.listId, req.body)
-
   }
 
   if (req.method === 'PATCH' && req.path.match(/\/tasks\/\d*/g)) {
-
     // stream message
     const id = parseInt(req.path.replace('/tasks/', ''))
     const task = db.get('tasks').find({ id }).value()
     socket.emit('taskUpdated', id, { ...task, ...req.body })
-
   }
 
   if (req.method === 'DELETE' && req.path.match(/\/tasks\/\d*/g)) {
-
     // stream message
     const id = parseInt(req.path.replace('/tasks/', ''))
     const task = db.get('tasks').find({ id }).value()
     socket.emit('taskDeleted', id, { ...task, ...req.body })
-
   }
 
   if (req.method === 'POST' && req.path === '/upload') {
@@ -158,7 +146,7 @@ module.exports = (req, res, next) => {
     let fstream
     req.pipe(req.busboy)
     req.busboy.on('file', (fieldname, file, filename) => {
-      fstream = fs.createWriteStream(`${__dirname}/public/uploaded/${name}_${filename}`)
+      fstream = fs.createWriteStream(`${__dirname}/public/uploaded/${name}_${filename}`)// eslint-disable-line
       file.pipe(fstream)
       fstream.on('close', () => {
         res.status(201).jsonp({ path: `/public/uploaded/${name}_${filename}` })
@@ -169,7 +157,6 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'GET' && req.path === '/users') {
-
     if (!userData) return unauthorized()
 
     const user = db.get('users').find({ id: userId }).value()
@@ -183,32 +170,29 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'POST' && req.path === '/welcomeemail') {
-
     // send welcome email if header is true
     sendmail({
       from: 'trelloapp@filiphric.sk',
       to: req.body.email,
       subject: 'Welcome to Trello app',
-      html: 'Your account was successfully created!',
-    }, function(err, reply) {
+      html: 'Your account was successfully created!'
+    }, function (err, reply) {
       console.log(err && err.stack)
       console.dir(reply)
     })
 
-    let response = res.status(201).jsonp(req.body)
+    const response = res.status(201).jsonp(req.body)
     return response
-
   }
 
   // cleanup methods
   if (req.method === 'POST' && req.path === '/reset') {
-
     db
       .setState({
         boards: [],
         tasks: [],
         users: [],
-        lists: [],
+        lists: []
       })
       .write()
 
@@ -218,38 +202,30 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'DELETE' && req.path === '/boards') {
-
     db.set('boards', []).write()
     db.set('lists', []).write()
     db.set('tasks', []).write()
 
     return res.sendStatus(204)
-
   }
 
   if (req.method === 'DELETE' && req.path === '/lists') {
-
     db.set('lists', []).write()
     db.set('tasks', []).write()
 
     return res.sendStatus(204)
-
   }
 
   if (req.method === 'DELETE' && req.path === '/tasks') {
-
     db.set('tasks', []).write()
 
     return res.sendStatus(204)
-
   }
 
   if (req.method === 'DELETE' && req.path === '/users') {
-
     db.set('users', []).write()
 
     return res.sendStatus(204)
-
   }
 
   next()

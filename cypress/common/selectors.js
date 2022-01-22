@@ -17,7 +17,7 @@ export const boardOptionsSelector = '[data-cy="board-options"]'
 export const deleteBoardSelector = '.dropdown-content > .delete'
 export const boardTitleSelector = '.background_title'
 
-//login - sign up
+// login - sign up
 export const logInSelector = '[data-cy="login-menu"]'
 export const logInButtonSelector = '[data-cy="signup"]'
 export const logInMessageSelector = '[id="loginMessage"]'

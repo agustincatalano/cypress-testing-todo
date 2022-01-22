@@ -24,7 +24,7 @@ describe('log in tests', () => {
     cy.get($.loggedUserSelector).should('be.visible').contains(email)
     cy.get($.loggedUserSelector).screenshot('loggedInButton')
 
-    //Store log-in cookie value
+    // Store log-in cookie value
     cy.getCookie('trello_token').then((cookie) => {
       trelloLogInCookie = cookie.value
     })

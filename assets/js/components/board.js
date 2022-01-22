@@ -16,7 +16,7 @@ Vue.component('board', {
     draggable
   },
   sockets: {
-    listCreated(boardId, message) {
+    listCreated (boardId, message) {
       // check that created list is in current board
       if (this.currentBoard.id === boardId) {
         // add list to board overview data
@@ -25,14 +25,14 @@ Vue.component('board', {
         this.$set(this.currentLists, message.id, [])
       }
     },
-    listUpdated(id, message) {
+    listUpdated (id, message) {
       // find list with ID in board list and update its values
       const updatedData = this.currentBoard.lists.map(x => (x.id === id ? { ...x, ...message } : x))
       this.currentBoard.lists = updatedData
     },
-    listDeleted(id) {
+    listDeleted (id) {
       // update current board overview data
-      const updatedItem = this.currentBoard.lists.filter( list => {
+      const updatedItem = this.currentBoard.lists.filter(list => {
         return list.id !== id
       })
       this.currentBoard.lists = updatedItem
@@ -40,32 +40,32 @@ Vue.component('board', {
       const updatedList = _.pick(this.currentLists, id)
       this.$set(this.currentLists, updatedList)
     },
-    taskCreated(listId, message) {
+    taskCreated (listId, message) {
       // check that created task is in lists of current board
       if (listId in this.currentLists) {
         this.currentLists[listId].push(message)
       }
     },
-    taskUpdated(id, message) {
+    taskUpdated (id, message) {
       // find list with ID in board list and update its values
       const updatedData = this.currentLists[message.listId].map(x => (x.id === id ? { ...x, ...message } : x))
       this.currentLists[message.listId] = updatedData
       this.currentTask = message
     },
-    taskDeleted(id, message) {
+    taskDeleted (id, message) {
       // update current list tasks
       // if (message.listId in this.currentLists) {
-      const updatedList = this.currentLists[message.listId].filter( task => {
+      const updatedList = this.currentLists[message.listId].filter(task => {
         return task.id !== id
       })
       this.currentLists[message.listId] = updatedList
       // }
     },
-    boardUpdate(id, message) {
+    boardUpdate (id, message) {
       this.currentBoard.name = message.name
     }
   },
-  data: function() {
+  data: function () {
     return {
       editTaskDescription: false,
       newListTitle: '',
@@ -102,7 +102,7 @@ Vue.component('board', {
       })
   },
   methods: {
-    copyProperties(content)  {
+    copyProperties (content) {
       const board = JSON.stringify(content, null, 2)
       const clipboard = window.navigator.clipboard
       /*
@@ -129,42 +129,34 @@ Vue.component('board', {
       }
       return clipboard.writeText(board)
     },
-    fileUploaded(res) {
-
-      let path = JSON.parse(res.xhr.response).path
+    fileUploaded (res) {
+      const path = JSON.parse(res.xhr.response).path
 
       axios
         .patch(`/api/tasks/${this.currentTask.id}`, { image: path })
 
       this.$set(this.currentTask, 'image', path)
-
     },
-    addImageId(file, xhr){
+    addImageId (file, xhr) {
       xhr.setRequestHeader('taskId', this.currentTask.id)
     },
-    removeImage() {
-
+    removeImage () {
       axios
         .patch(`/api/tasks/${this.currentTask.id}`, { image: null })
 
       this.currentTask.image = null
-
     },
-    sortList() {
-
+    sortList () {
       this.currentBoard.lists.forEach((list, index) => {
-
         list.order = index
 
         axios
           .patch(`/api/lists/${list.id}`, { order: index })
-
       })
     },
-    sortTask(evt) {
-
-      let from = parseInt(evt.from.parentElement.getAttribute('data-id'))
-      let to = parseInt(evt.to.parentElement.getAttribute('data-id'))
+    sortTask (evt) {
+      const from = parseInt(evt.from.parentElement.getAttribute('data-id'))
+      const to = parseInt(evt.to.parentElement.getAttribute('data-id'))
 
       // get old position + new position and use it with slice
       // changing 0 and 1 - just change slice (0, 1)
@@ -173,52 +165,45 @@ Vue.component('board', {
       // how to get indexes numbers?
 
       this.currentLists[from].forEach((task, index) => {
-
         // change index in data store
         task.order = index
 
         axios
           .patch(`/api/tasks/${task.id}`, { order: index })
-
       })
 
       // get old list and do a full reorder
       // get new list and new position, order everything from slice start to slice down
 
       if (from !== to) {
-
         this.currentLists[to].forEach((task, index) => {
-
           // change index in data store - keep this for full reorder of old list, but use currentLists[from]
           task.order = index
 
           // send request to api
           axios
             .patch(`/api/tasks/${task.id}`, { order: index, listId: to })
-
         })
-
       }
-
     },
-    updateListName(list) {
+    updateListName (list) {
       axios
         .patch(`/api/lists/${list.id}`, { title: list.title })
     },
-    updateTaskName(task) {
+    updateTaskName (task) {
       axios
         .patch(`/api/tasks/${task.id}`, { title: task.title })
     },
-    updateBoardName() {
+    updateBoardName () {
       axios
         .patch(`/api/boards/${this.currentBoard.id}`, { name: this.currentBoard.name })
     },
-    addTask: function(list) {
+    addTask: function (list) {
       if (!this.newTaskTitle) {
         this.newTaskInputActive = false
         return
       }
-      let task = {
+      const task = {
         boardId: this.currentBoard.id,
         description: '',
         completed: false,
@@ -230,7 +215,7 @@ Vue.component('board', {
         .then(() => {
           this.newTaskTitle = ''
           this.newTaskInputActive = false
-        }).catch( () => { // handle error, show error message
+        }).catch(() => { // handle error, show error message
           this.$root.errorMessage.show = true
           this.$root.errorMessage.text = 'There was an error creating task'
           setTimeout(() => { // hide error message after 4 seconds
@@ -238,12 +223,12 @@ Vue.component('board', {
           }, 4000)
         })
     },
-    addList() {
+    addList () {
       if (!this.newListTitle) {
         this.newListInputActive = false
         return
       }
-      let list = {
+      const list = {
         boardId: this.currentBoard.id,
         title: this.newListTitle
       }
@@ -252,7 +237,7 @@ Vue.component('board', {
         .then(() => {
           this.newListTitle = ''
           this.newListInputActive = false
-        }).catch( () => { // handle error, show error message
+        }).catch(() => { // handle error, show error message
           this.$root.errorMessage.show = true
           this.$root.errorMessage.text = 'There was an error creating list'
           setTimeout(() => { // hide error message after 4 seconds
@@ -260,26 +245,26 @@ Vue.component('board', {
           }, 4000)
         })
     },
-    cancelNewList() {
+    cancelNewList () {
       this.newListTitle = ''
       this.newListInputActive = false
     },
     // tasksList: function(list) {
     //   return this.currentBoard.tasks.filter(b => b.listId === list.id);
     // },
-    editTask: function(list, task) {
+    editTask: function (list, task) {
       this.showTaskModule = true
       this.currentList = list
       this.currentTask = task
     },
-    completeTask: function(task) {
+    completeTask: function (task) {
       axios
-        .patch(`/api/tasks/${task.id}`, {completed: task.completed})
+        .patch(`/api/tasks/${task.id}`, { completed: task.completed })
     },
-    closeTask: function() {
+    closeTask: function () {
       this.currentTask = {}
     },
-    deleteTask: function(task) {
+    deleteTask: function (task) {
       this.showTaskModule = false
       this.currentTask = {}
       // this.currentLists[task.listId] = this.currentLists[task.listId].filter(t => { return t.id !== task.id; });
@@ -287,28 +272,27 @@ Vue.component('board', {
       axios
         .delete(`/api/tasks/${task.id}`)
     },
-    deleteList: function(list) {
+    deleteList: function (list) {
       axios
         .delete(`/api/lists/${list.id}`)
     },
-    deleteBoard: function(deleteBoard) {
-
+    deleteBoard: function (deleteBoard) {
       axios
         .delete(`/api/boards/${deleteBoard.id}`)
-        .then( () => {
+        .then(() => {
           this.$router.push('/')
         })
     },
-    saveNewTaskDescription: function(task) {
+    saveNewTaskDescription: function (task) {
       this.editTaskDescription = false
       axios
-        .patch(`/api/tasks/${task.id}`, {description: task.description})
+        .patch(`/api/tasks/${task.id}`, { description: task.description })
     },
-    saveNewTaskDeadline: function(task) {
+    saveNewTaskDeadline: function (task) {
       axios
-        .patch(`/api/tasks/${task.id}`, {deadline: task.deadline})
+        .patch(`/api/tasks/${task.id}`, { deadline: task.deadline })
     },
-    overdue: function(task) {
+    overdue: function (task) {
       if (task.deadline && moment(task.deadline).diff(moment().startOf('day'), 'days') < 1) {
         return 'overDue'
       }

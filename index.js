@@ -18,7 +18,7 @@ server.use(nocache())
 server.use(busboy())
 server.use(jsonServer.rewriter({
   '/api/*': '/$1',
-  '/users/*': '/600/users/$1',
+  '/users/*': '/600/users/$1'
 }))
 server.use(auth)
 server.use(jsonServer.bodyParser)
@@ -64,5 +64,4 @@ io.on('connection', (socket) => {
   socket.on('taskDeleted', (id, message) => {
     io.emit('taskDeleted', id, message)
   })
-
 })

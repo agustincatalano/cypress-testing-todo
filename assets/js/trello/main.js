@@ -10,18 +10,18 @@ require('./../directives/vue-focus.js')
 require('./../components/collection.js')
 require('./../components/board.js')
 
-var router = new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   base: window.location.pathName,
   routes: [
     { path: '*', redirect: '/' },
     { path: '/', name: 'board-collection', component: Vue.component('board-collection') },
-    { path: '/board/:id', name: 'board', component: Vue.component('board') },
+    { path: '/board/:id', name: 'board', component: Vue.component('board') }
   ]
 })
 
 const app = new Vue({
-  data: function() {
+  data: function () {
     return {
       errorMessage: {
         show: false,
@@ -29,36 +29,36 @@ const app = new Vue({
       },
       loggedIn: {
         active: false,
-        email: '',
+        email: ''
       },
       showLoginModule: false,
       tools: false
     }
   },
   methods: {
-    resetAll: function() {
+    resetAll: function () {
       axios
         .post('/api/reset')
     },
-    resetBoards: function() {
+    resetBoards: function () {
       axios
         .delete('/api/boards')
     },
-    resetLists: function() {
+    resetLists: function () {
       axios
         .delete('/api/lists')
     },
-    resetTasks: function() {
+    resetTasks: function () {
       axios
         .delete('/api/tasks')
     },
-    resetUsers: function() {
+    resetUsers: function () {
       axios
         .delete('/api/users')
     },
-    toggleTools: function() {
+    toggleTools: function () {
       this.tools = !this.tools
-    },
+    }
   },
   router
 }).$mount('#trello-app')

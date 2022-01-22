@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     sass: {
@@ -11,18 +11,18 @@ module.exports = function(grunt) {
     browserify: {
       dist: {
         files: {
-          'public/js/trello.js': 'assets/js/trello/main.js',
-        },
+          'public/js/trello.js': 'assets/js/trello/main.js'
+        }
       }
     },
     watch: {
       css: {
         files: '**/*.scss',
-        tasks: ['sass'],
+        tasks: ['sass']
       },
       scripts: {
         files: './assets/**/*.js',
-        tasks: ['browserify'],
+        tasks: ['browserify']
       }
     }
   })
@@ -32,5 +32,4 @@ module.exports = function(grunt) {
   grunt.registerTask('s', ['sass'])
   grunt.registerTask('b', ['browserify'])
   grunt.registerTask('dev', ['sass', 'browserify'])
-
 }
