@@ -9,15 +9,14 @@ name: Lint Code Base
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Person to greet'
+      logLevel:
+        description: 'Log level'     
         required: true
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
-
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
+    
+    
   push:
     branches: [ main ]
   pull_request:
