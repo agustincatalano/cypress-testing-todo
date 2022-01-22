@@ -7,16 +7,8 @@
 name: Lint Code Base
 
 on:
-workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags'  
+workflow_dispatch
 
-        
   push:
     branches: [ main ]
   pull_request:
