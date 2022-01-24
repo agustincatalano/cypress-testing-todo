@@ -40,7 +40,7 @@ module.exports = {
         next: 'multiline-block-like'
       }
     ],
-    'no-console': 'off',
+    'no-console': 2,
     'no-undef': 'off',
     'no-unused-expressions': 0,
     'chai-friendly/no-unused-expressions': 2

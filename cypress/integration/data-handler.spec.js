@@ -20,7 +20,6 @@ describe('Add a board with the data.json info', () => {
   })
 
   it('create first list', () => {
-    console.log(names)
     methods.addLists()
     cy.get('[data-cy="list"]').should('have.length', 1)
     cy.get('[data-cy="list-name"]').clear().type(names[0])
