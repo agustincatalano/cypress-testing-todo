@@ -1,0 +1,29 @@
+{
+  "firstName": "Agustin",
+  "lastName": "Catalano",
+  "gender": "man",
+  "age": 36,
+  "address": {
+    "streetAddress": "742 Evergreen Terrace",
+    "city": "Springfield",
+    "state": "CA",
+    "postalCode": "394221"
+  },
+  "phoneNumbers": [{ "type": "home", "number": "7383627627" }],
+  "messages": {
+    "lists": [
+      {
+        "name": "First list on the json file",
+        "title": "This is an AWESOME title",
+        "head": "I should go first",
+        "body": "I should go in 2nd place"
+      },
+      {
+        "name": "Second list on the json file",
+        "title": "This is an 2nd title",
+        "head": "I should go first",
+        "body": "I should go in 2nd place"
+      }
+    ]
+  }
+}
